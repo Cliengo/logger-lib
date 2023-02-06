@@ -13,7 +13,12 @@ module.exports = {
   preset: "ts-jest",
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{ts,js}"],
-  coveragePathIgnorePatterns: ["/node_modules/", "/.github/", "/configs/"],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "/.github/",
+    "/configs/",
+    "/src/__mocks__",
+  ],
   restoreMocks: true,
   transform: {
     "^.+\\.tsx?$": [
