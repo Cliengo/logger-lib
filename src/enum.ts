@@ -1,5 +1,4 @@
 // istanbul ignore file
-// WHY?: Nothing to test.
 
 /** @see https://github.com/winstonjs/winston#logging */
 // This values can't be at UpperCase, otherwise winston wont recognise them

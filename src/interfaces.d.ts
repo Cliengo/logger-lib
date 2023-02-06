@@ -1,3 +1,4 @@
+// istanbul ignore file
 import { ErrorCode } from "./enum";
 
 /** Interface for a single log register */
