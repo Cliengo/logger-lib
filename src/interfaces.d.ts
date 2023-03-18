@@ -29,6 +29,14 @@ export interface ILogger {
    */
   exception(entry: ILogErrorEntry): void;
 
+  /** logs a handled server error
+   * @param {string} [entry.context] name of class+method or function where the log is called (optional)
+   * @param {string} [entry.message] string description of the logged action (optional)
+   * @param {unknown} [entry.metadata] object for giving further information (optional)
+   * @param {ErrorCode} entry.errorCode standard code of the error
+   */
+  serverError(entry: ILogErrorEntry): void;
+
   /** logs an operation, like database access
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)

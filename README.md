@@ -64,6 +64,14 @@ logger.exception({
   metadata: { id; 12 }
 })
 
+// logs a handled server error or 
+logger.serverError({
+  errorCode: ErrorCode.UNCAUGHT_EXCEPTION,
+  context: "GoogleCalendarService.inserEvent",
+  message: "uncaught exception in calendar external service ",
+  metadata: { id; 12 }
+})
+
 // logs an operation, like database access
 logger.operational({
   context: "GoogleCalendarService.inserEvent",
@@ -148,7 +156,8 @@ The corresponding Level ⇆ provided logging method:
 
 | Level     | method                                                                       |
 | --------- | ---------------------------------------------------------------------------- |
-| `ERROR`   | `exception()`                                                                |
+| `ERROR`   | `serverError()`                                                                |
+| `WARN`    | `exception()`                                                                |
 | `INFO`    | `operational()`                                                              |
 | `HTTP`    | `request()`<br>`response()`<br>`serviceRequest()`<br>`serviceResponse()`<br> |
 | `VERBOSE` | `system()`                                                                   |
@@ -233,6 +242,8 @@ NEW_RELIC_LICENSE_KEY="the_numeric_key_here"
 NEW_RELIC_LOG="stdout"
 NEW_RELIC_LOG_ENABLED=true
 NEW_RELIC_NO_CONFIG_FILE=true
+NEW_RELIC_ERROR_COLLECTOR_ATTRIBUTES_ENABLED=true
+NEW_RELIC_ERROR_COLLECTOR_IGNORE_ERROR_CODES=400,401,402,403,404,405,406,407,408,408,409,410,411,412,413,422
 
 #To disable forwarding logs to new relic, set this to false
 NEW_RELIC_ENABLED=true

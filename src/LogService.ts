@@ -99,7 +99,7 @@ class LogService implements ILogger {
   public exception(entry: ILogErrorEntry): void {
     const { context, message, metadata, errorCode } = entry;
     this.logger.log({
-      level: Level.error,
+      level: Level.warn,
       message: message || ErrorCodeDefaultDesciption[errorCode],
       category: Category.EXCEPTION,
       context,
@@ -115,10 +115,10 @@ class LogService implements ILogger {
    * @param {unknown} [entry.metadata] object for giving further information (optional)
    * @param {ErrorCode} entry.errorCode standard code of the error
    */
-  public clientError(entry: ILogErrorEntry): void {
+  public serverError(entry: ILogErrorEntry): void {
     const { context, message, metadata, errorCode } = entry;
     this.logger.log({
-      level: Level.warn,
+      level: Level.error,
       message: message || ErrorCodeDefaultDesciption[errorCode],
       category: Category.EXCEPTION,
       context,
