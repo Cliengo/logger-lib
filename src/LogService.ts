@@ -109,6 +109,25 @@ class LogService implements ILogger {
     });
   }
 
+  /** logs a handled client error
+   * @param {string} [entry.context] name of class+method or function where the log is called (optional)
+   * @param {string} [entry.message] string description of the logged action (optional)
+   * @param {unknown} [entry.metadata] object for giving further information (optional)
+   * @param {ErrorCode} entry.errorCode standard code of the error
+   */
+  public clientError(entry: ILogErrorEntry): void {
+    const { context, message, metadata, errorCode } = entry;
+    this.logger.log({
+      level: Level.warn,
+      message: message || ErrorCodeDefaultDesciption[errorCode],
+      category: Category.EXCEPTION,
+      context,
+      correlationId: correlator.getId(),
+      errorCode,
+      metadata,
+    });
+  }
+
   /** logs an operation, like database access
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)
