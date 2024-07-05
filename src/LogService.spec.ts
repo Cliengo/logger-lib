@@ -103,7 +103,7 @@ describe("LogService", () => {
       expect(mockedPrivateLogger.log).toHaveBeenCalledTimes(1);
       expect(mockedPrivateLogger.log).toHaveBeenCalledWith({
         ...logEntry,
-        level: Level.error,
+        level: Level.warn,
         category: Category.EXCEPTION,
         message: ErrorCodeDefaultDesciption[ErrorCode.INVALID_BODY],
         correlationId: mockedCorrelationId,
