@@ -90,7 +90,7 @@ class LogService implements ILogger {
     return meta ? String(meta) : meta;
   }
 
-  /** logs a handled business error
+  /** logs a handled client error
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)
    * @param {unknown} [entry.metadata] object for giving further information (optional)
@@ -109,7 +109,7 @@ class LogService implements ILogger {
     });
   }
 
-  /** logs a handled client error
+  /** logs a handled server error
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)
    * @param {unknown} [entry.metadata] object for giving further information (optional)

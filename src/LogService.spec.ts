@@ -21,6 +21,7 @@ jest.mock("winston", () => {
 });
 
 const mockedCorrelationId = "135f5dc6-428e-42cd-af57-17d8d5bd215f";
+
 jest.mock("express-correlation-id", () => {
   return {
     // getId: jest.fn().mockReturnValue("135f5dc6-428e-42cd-af57-17d8d5bd215f"),
@@ -103,7 +104,7 @@ describe("LogService", () => {
       expect(mockedPrivateLogger.log).toHaveBeenCalledTimes(1);
       expect(mockedPrivateLogger.log).toHaveBeenCalledWith({
         ...logEntry,
-        level: Level.error,
+        level: Level.warn,
         category: Category.EXCEPTION,
         message: ErrorCodeDefaultDesciption[ErrorCode.INVALID_BODY],
         correlationId: mockedCorrelationId,
