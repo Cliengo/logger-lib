@@ -89,7 +89,7 @@ describe("LogService", () => {
   });
 
   describe("exception", () => {
-    it("should log logEntry", () => {
+    it("should log logEntry with enum error code", () => {
       const logger = new LogService();
       const logEntry: ILogErrorEntry = {
         context: "testing.context",
@@ -106,7 +106,29 @@ describe("LogService", () => {
         ...logEntry,
         level: Level.warn,
         category: Category.EXCEPTION,
-        message: ErrorCodeDefaultDesciption[ErrorCode.INVALID_BODY],
+        message: "",
+        correlationId: mockedCorrelationId,
+      });
+    });
+
+    it("should log logEntry with string error code", () => {
+      const logger = new LogService();
+      const logEntry: ILogErrorEntry = {
+        context: "testing.context",
+        errorCode: "INVALID",
+        metadata: {
+          data: "TEST",
+          description: "Testing Metadata",
+          value: 12,
+        },
+      };
+      logger.exception(logEntry);
+      expect(mockedPrivateLogger.log).toHaveBeenCalledTimes(1);
+      expect(mockedPrivateLogger.log).toHaveBeenCalledWith({
+        ...logEntry,
+        level: Level.warn,
+        category: Category.EXCEPTION,
+        message: "",
         correlationId: mockedCorrelationId,
       });
     });

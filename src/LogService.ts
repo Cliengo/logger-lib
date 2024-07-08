@@ -94,13 +94,13 @@ class LogService implements ILogger {
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)
    * @param {unknown} [entry.metadata] object for giving further information (optional)
-   * @param {ErrorCode} entry.errorCode standard code of the error
+   * @param {ErrorCode | string} entry.errorCode standard code of the error
    */
   public exception(entry: ILogErrorEntry): void {
     const { context, message, metadata, errorCode } = entry;
     this.logger.log({
       level: Level.warn,
-      message: message || ErrorCodeDefaultDesciption[errorCode],
+      message: message || "",
       category: Category.EXCEPTION,
       context,
       correlationId: correlator.getId(),
@@ -113,13 +113,13 @@ class LogService implements ILogger {
    * @param {string} [entry.context] name of class+method or function where the log is called (optional)
    * @param {string} [entry.message] string description of the logged action (optional)
    * @param {unknown} [entry.metadata] object for giving further information (optional)
-   * @param {ErrorCode} entry.errorCode standard code of the error
+   * @param {ErrorCode | string} entry.errorCode standard code of the error
    */
   public serverError(entry: ILogErrorEntry): void {
     const { context, message, metadata, errorCode } = entry;
     this.logger.log({
       level: Level.error,
-      message: message || ErrorCodeDefaultDesciption[errorCode],
+      message: message || "",
       category: Category.EXCEPTION,
       context,
       correlationId: correlator.getId(),
