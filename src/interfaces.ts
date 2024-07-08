@@ -14,9 +14,18 @@ export type ILogEntry = {
 };
 
 /** Interface for a single error log register */
-export type ILogErrorEntry = ILogEntry & {
+export type ILogErrorEntry = {
+  /** name of class+method or function where the log is called */
+  context?: string;
+
+  /** description of the logged action */
+  message?: string;
+
+  /** object for giving further information */
+  metadata?: unknown;
+
   /** standard code of the error */
-  errorCode: ErrorCode;
+  errorCode: ErrorCode | string;
 };
 
 /** Interface that expose LogService */
