@@ -57,12 +57,14 @@ class LogService implements ILogger {
 
   private _getCreationOptions(): LoggerOptions {
     return {
-      level: this.level,
-      format: format.printf((info) => this._transformData(info)),
       transports: [
-        new transports.Console(),
+        new transports.Console({
+          level: this.level,
+          format: format.printf((info) => this._transformData(info)),
+        }),
         new NewrelicTransport({
           level: this.level,
+          format: format.json(),
         }),
       ],
     };
