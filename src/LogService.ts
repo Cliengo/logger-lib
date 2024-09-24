@@ -8,7 +8,7 @@ import {
   LoggerOptions,
   transports,
 } from "winston";
-
+import NewrelicTransport from "winston-newrelic-agent-transport";
 import { Category, ErrorCode, Level } from "./enum";
 import { ILogEntry, ILogErrorEntry, ILogger } from "./interfaces";
 
@@ -59,7 +59,12 @@ class LogService implements ILogger {
     return {
       level: this.level,
       format: format.printf((info) => this._transformData(info)),
-      transports: [new transports.Console()],
+      transports: [
+        new transports.Console(),
+        new NewrelicTransport({
+          level: this.level,
+        }),
+      ],
     };
   }
 

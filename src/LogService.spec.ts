@@ -45,8 +45,8 @@ describe("LogService", () => {
     it("should call createLogger on new LogService(level)", () => {
       const level = Level.error;
       new LogService(level);
-      expect(mockCreateLogger).toBeCalledTimes(1);
-      expect(mockCreateLogger).toBeCalledWith({
+      expect(mockCreateLogger).toHaveBeenCalledTimes(1);
+      expect(mockCreateLogger).toHaveBeenCalledWith({
         level,
         format: expect.any(Object),
         transports: expect.any(Object),
@@ -55,8 +55,8 @@ describe("LogService", () => {
 
     it("should call createLogger on new LogService() [default params]", () => {
       new LogService();
-      expect(mockCreateLogger).toBeCalledTimes(1);
-      expect(mockCreateLogger).toBeCalledWith({
+      expect(mockCreateLogger).toHaveBeenCalledTimes(1);
+      expect(mockCreateLogger).toHaveBeenCalledWith({
         level: Level.verbose,
         format: expect.any(Object),
         transports: expect.any(Object),
